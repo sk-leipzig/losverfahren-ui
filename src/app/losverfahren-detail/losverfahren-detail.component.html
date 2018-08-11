@@ -1,0 +1,13 @@
+<div>
+	<h3 *ngIf="losverfahren"> {{losverfahren.name | uppercase}} bearbeiten</h3>
+	<div>
+		<app-teilnehmernummer></app-teilnehmernummer>
+	</div>
+	<div>
+		<app-kursliste></app-kursliste>
+	</div>
+	<nav>
+		<a routerLink="/losverfahren">zurück zu den Losverfahren</a>
+	</nav>
+</div>
+
