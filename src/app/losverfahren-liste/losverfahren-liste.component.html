@@ -16,6 +16,6 @@
 	<h3>Losverfahren anlegen</h3>
 	<label>Name:  <input #name
 		placeholder="Namen für neues Losverfahren eingeben" />
-		<button (click)="createLosverfahren(name.value)">anlegen</button>
+		<button (click)="createLosverfahren(name.value); name.value='';">anlegen</button>
 	</label>
 </div>

@@ -1,0 +1,29 @@
+table {
+  background-color: #ffeda0;
+  border-collapse: collapse;
+  border-width: 5px;
+  border-style: solid;
+}
+
+thead {
+  background-color: #f3c600;
+}
+
+tfoot {
+  background-color: #F7F1D4;
+  font-size: 80%;
+  border-top: 1px solid #999;
+}
+
+td, th {
+  text-align: left;
+  padding: 0.5em 1em;
+}
+
+p {
+  display: block;
+  margin: 2em;
+  padding: 2em;
+  border: 1px dotted;
+}
+

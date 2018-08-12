@@ -14,7 +14,7 @@ export class LosverfahrenListeComponent implements OnInit {
   losverfahrenListe: Losverfahren[];
 
   constructor(private losverfahrenService: LosverfahrenService,
-    private messageService: MessageService) {
+              private messageService: MessageService) {
   }
 
   ngOnInit() {
@@ -26,12 +26,18 @@ export class LosverfahrenListeComponent implements OnInit {
   }
 
   createLosverfahren(name: string) {
-    this.losverfahrenService.createLosverfahren(new Losverfahren(name)).subscribe(ret => {
-      this.getLosverfahren();
+    this.losverfahrenService.getAllLosverfahren().subscribe(losverfahrenListe => {
+      let newId = 1;
+      while (losverfahrenListe.find(losverfahren => losverfahren.id === newId)) {
+        newId++;
+      }
+      this.losverfahrenService.createLosverfahren(new Losverfahren(newId, name)).subscribe(ret =>
+        this.getLosverfahren());
     });
   }
 
-  deleteLosverfahren(id: string) {
+
+  deleteLosverfahren(id: number) {
     this.losverfahrenService.deleteLosverfahren(id).subscribe(ret => {
       this.getLosverfahren();
     });

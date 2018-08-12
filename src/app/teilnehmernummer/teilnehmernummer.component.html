@@ -1,2 +1,9 @@
+<hr/>
 <h3>Teilnehmernummer generieren:</h3>
-<input #file type="file" name="file" (change)="upload(file.files)" />
+<label>
+Zum Erzeugen einer neuen Schuelerliste Excel Datei hochladen: <input #file type="file" name="schuelerliste" (change)="upload(file.files)" />
+</label>
+<p>
+<i><b>Beim Upload wird die aktuelle Schülerliste gelöscht!</b> Nach dem Upload werden in das Excel in Spalte 4 die generierten Kennungen als zehnstelliger Zahl eingetragen und sofort als neue Excel Datei heruntergeladen.</i>
+</p>
+<hr/>

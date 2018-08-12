@@ -2,11 +2,12 @@ import {Kurs} from './kurs';
 import {Links2, Page} from './rest';
 
 export class Losverfahren {
-  id: string;
+  id: number;
   name: string;
   kurse: Kurs[];
 
-  constructor(name: string) {
+  constructor(id: number, name: string) {
+    this.id = id;
     this.name = name;
     this.kurse = [];
   }

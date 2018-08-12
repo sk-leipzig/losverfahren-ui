@@ -1,4 +1,4 @@
-<h4>Kurse anlegen</h4>
+<h3>Kurse anlegen</h3>
 <table *ngIf="losverfahren">
   <tr>
     <th>Kursname</th>
@@ -20,11 +20,13 @@
     <td><span *ngIf="kurs.klassenstufen.includes(9)">ja</span></td>
     <td><span *ngIf="kurs.klassenstufen.includes(10)">ja</span></td>
     <td>{{kurs.plaetze}}</td>
-    <td><button (click)="deleteKurs(kurs.id)">x</button></td>
+    <td><button (click)="deleteKurs(kurs.name)">x</button></td>
   </tr>
 </table>
+<p>
 <label>Kursname:  <input #neuerKursName placeholder="Kursnamen eingeben" /> </label>
-<label>Plätze: <input #plaetze size="3"/> 
+<label>Plätze: <input #plaetze size="3"/>
 	<button (click)="createKurs(neuerKursName.value, plaetze.value); neuerKursName.value=''; plaetze.value=''">anlegen</button>
 </label>
+</p>
 

@@ -1,6 +1,5 @@
 import {Component, OnInit, Input} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {Observable} from 'rxjs';
 import {MessageService} from '../message.service';
 import {Kurs} from '../kurs';
 import {Losverfahren} from '../losverfahren';
@@ -16,8 +15,8 @@ export class KurslisteComponent implements OnInit {
   losverfahren: Losverfahren;
 
   constructor(private route: ActivatedRoute,
-    private losverfahrenService: LosverfahrenService,
-    private messageService: MessageService) {
+              private losverfahrenService: LosverfahrenService,
+              private messageService: MessageService) {
   }
 
   ngOnInit() {
@@ -40,8 +39,9 @@ export class KurslisteComponent implements OnInit {
     this.losverfahrenService.updateLosverfahren(this.losverfahren).subscribe(ret => this.getLosverfahren());
   }
 
-  deleteKurs(id: string) {
-    this.losverfahren.kurse = this.losverfahren.kurse.filter(k => k.id !== id);
+  deleteKurs(name: string) {
+    this.log(`Lösche Kurs ${name}`);
+    this.losverfahren.kurse = this.losverfahren.kurse.filter(k => k.name !== name);
     this.losverfahrenService.updateLosverfahren(this.losverfahren).subscribe(ret => this.getLosverfahren());
   }
 

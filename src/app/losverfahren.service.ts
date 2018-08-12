@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Observable, of} from 'rxjs';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {FileSelectDirective, FileDropDirective, FileUploader} from 'ng2-file-upload/ng2-file-upload';
 import {catchError, map, tap} from 'rxjs/operators';
 import {MessageService} from './message.service';
 import {LosverfahrenListe, Losverfahren} from './losverfahren';
@@ -33,7 +32,7 @@ export class LosverfahrenService {
     this.log(`Sende GET an ${this.losverfahren_service_uri}/${id}`);
     return this.http.get<Losverfahren>(this.losverfahren_service_uri + '/' + id).pipe(
       tap(losverfahren => this.log('Losverfahren erhalten: ' + losverfahren.name)),
-      catchError(this.handleError('getLosverfahren', new Losverfahren('Losverfahren mit id=${id} nicht gefunden!')))
+      catchError(this.handleError<any>('getLosverfahren'))
     );
   }
 
@@ -53,7 +52,7 @@ export class LosverfahrenService {
     );
   }
 
-  deleteLosverfahren(id: string): Observable<any> {
+  deleteLosverfahren(id: number): Observable<any> {
     this.log(`Sende DELETE an ${this.losverfahren_service_uri}/${id}`);
     return this.http.delete<string>(this.losverfahren_service_uri + '/' + id).pipe(
       tap(_ => this.log(`Losverfahren mit id ${id} gelöscht.`)),

@@ -1,7 +1,6 @@
 import {Links2, Page} from './rest';
 
 export class Kurs {
-  id: string;
   name: string;
   klassenstufen: number[];
   plaetze: number;
