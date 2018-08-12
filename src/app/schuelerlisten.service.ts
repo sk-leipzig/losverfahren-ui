@@ -3,7 +3,7 @@ import {MessageService} from './message.service';
 import {HttpClient, HttpHeaders, HttpRequest} from '@angular/common/http';
 import {catchError, map, tap} from 'rxjs/operators';
 import {Observable, of} from 'rxjs';
-import {HttpResponse} from '@angular/common/http/src/response';
+import {environment} from '../environments/environment';
 
 const httpOptions = {
   responseType: 'blob',
@@ -16,7 +16,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class SchuelerlistenService {
-  private schuelerlisten_upload_uri = 'http://localhost:8080/schuelerlisten/upload';
+  private schuelerlisten_upload_uri = environment.api_base_url + '/schuelerlisten/upload';
 
   constructor(private http: HttpClient, private messageService: MessageService) {
   }

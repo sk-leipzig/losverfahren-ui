@@ -6,9 +6,9 @@ import {SchuelerauswahlComponent} from './schuelerauswahl/schuelerauswahl.compon
 
 const routes: Routes = [
   {path: '', redirectTo: '/schuelerauswahl', pathMatch: 'full'},
-  {path: 'schuelerauswahl', component: SchuelerauswahlComponent, pathMatch: 'full'},
-  {path: 'losverfahren', component: LosverfahrenListeComponent, pathMatch: 'full'},
-  {path: 'losverfahren/:id', component: LosverfahrenDetailComponent, pathMatch: 'full'}
+  {path: 'schuelerauswahl', component: SchuelerauswahlComponent},
+  {path: 'losverfahren', component: LosverfahrenListeComponent},
+  {path: 'losverfahren/:id', component: LosverfahrenDetailComponent}
 ];
 
 @NgModule({

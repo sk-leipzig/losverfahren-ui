@@ -4,6 +4,7 @@ import {Links2, Page} from './rest';
 export class Losverfahren {
   id: number;
   name: string;
+  aktiv: boolean;
   kurse: Kurs[];
 
   constructor(id: number, name: string) {

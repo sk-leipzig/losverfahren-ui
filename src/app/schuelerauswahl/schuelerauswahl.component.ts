@@ -56,6 +56,7 @@ export class SchuelerauswahlComponent implements OnInit {
         this.auswahl1 = null;
         this.auswahl2 = null;
         this.auswahl3 = null;
+        window.alert('Deine Wünsche wurden gespeichert. Viel Glück!');
       }
     );
   }

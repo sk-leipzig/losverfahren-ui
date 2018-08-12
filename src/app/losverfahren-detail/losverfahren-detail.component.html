@@ -1,13 +1,32 @@
 <div>
-	<h3 *ngIf="losverfahren"> {{losverfahren.name | uppercase}} bearbeiten</h3>
-	<div>
-		<app-teilnehmernummer></app-teilnehmernummer>
-	</div>
-	<div>
-		<app-kursliste></app-kursliste>
-	</div>
-	<nav>
-		<a routerLink="/losverfahren">zurück zu den Losverfahren</a>
-	</nav>
+  <h3 *ngIf="losverfahren"> {{losverfahren.name | uppercase}} bearbeiten</h3>
+  <div class="block">
+    <table>
+      <tr>
+        <td>
+          <input id="aktiv" class="css-checkbox" type="checkbox" (change)="updateLosverfahren()"
+                 [(ngModel)]="losverfahren.aktiv"/>
+          <label class="css-label" for="aktiv">Losverfahren</label>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label for="auswerten">Auswertung starten</label>
+          <input id="auswerten" [disabled]="losverfahren.aktiv" #file type="file" name="schuelerliste" (change)="upload(file.files)"/>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+
+  <div>
+    <app-teilnehmernummer></app-teilnehmernummer>
+  </div>
+  <div>
+    <app-kursliste></app-kursliste>
+  </div>
+  <nav>
+    <a routerLink="/losverfahren">zurück zu den Losverfahren</a>
+  </nav>
 </div>
 

@@ -1,30 +1,36 @@
-/* HeroDetailComponent's private CSS styles */
-label {
-  display: inline-block;
-  width: 3em;
-  margin: .5em 0;
-  color: #607D8B;
-  font-weight: bold;
+div.block {
+  display: block;
+  margin: 2em;
+  padding: 2em;
+  border: 1px dotted;
 }
-input {
-  height: 2em;
-  font-size: 1em;
-  padding-left: .4em;
+
+input[type=checkbox].css-checkbox {
+  position:absolute; z-index:-1000; left:-1000px; overflow: hidden; clip: rect(0 0 0 0); height:1px; width:1px; margin:-1px; padding:0; border:0;
 }
-button {
-  margin-top: 20px;
-  font-family: Arial;
-  background-color: #eee;
-  border: none;
-  padding: 5px 10px;
-  border-radius: 4px;
-  cursor: pointer; cursor: hand;
+
+input[type=checkbox].css-checkbox + label.css-label {
+  padding-left:29px;
+  height:24px;
+  display:inline-block;
+  line-height:24px;
+  background-repeat:no-repeat;
+  background-position: 0 0;
+  font-size:24px;
+  vertical-align:middle;
+  cursor:pointer;
+
 }
-button:hover {
-  background-color: #cfd8dc;
+
+input[type=checkbox].css-checkbox:checked + label.css-label {
+  background-position: 0 -24px;
 }
-button:disabled {
-  background-color: #eee;
-  color: #ccc;
-  cursor: auto;
+label.css-label {
+  background-image:url(http://csscheckbox.com/checkboxes/u/csscheckbox_4f6bc9a7cc47504b9c36e04aa489f19e.png);
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }

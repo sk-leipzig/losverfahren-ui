@@ -10,6 +10,7 @@ import {Schuelerliste} from './schuelerlisten';
 import {flatMap} from 'rxjs/internal/operators';
 import {SchuelerAuswahl} from './schuelerAuswahl';
 import {Schueler} from './schueler';
+import {environment} from '../environments/environment';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -31,7 +32,8 @@ export class SchuelerauswahlService {
   }
 
   getLosverfahrenForKennung(kennung: string): Observable<SchuelerUndLosverfahren> {
-    const schuelerlisten_searchByKennung_uri = `http://localhost:8080/schuelerlisten/search/findBySchuelerListeKennung?kennung=${kennung}`;
+    const schuelerlisten_searchByKennung_uri = environment.api_base_url
+      + `/api/schuelerlisten/search/findBySchuelerListeKennung?kennung=${kennung}`;
     this.log(`Sende GET an ${schuelerlisten_searchByKennung_uri}`);
     const schuelerUndLosverfahren = new SchuelerUndLosverfahren();
     return this.http.get<Schuelerliste>(schuelerlisten_searchByKennung_uri).pipe(
@@ -45,19 +47,18 @@ export class SchuelerauswahlService {
                 schuelerUndLosverfahren.losverfahren = losverfahren;
                 return schuelerUndLosverfahren;
               }
-            ),
-            catchError(this.handleErrorIgnoreNotFound<any>(`getLosverfahrenForKennung`))
+            )
           );
         } else {
           return new EmptyObservable();
         }
       }),
-      catchError(this.handleError<any>(`getLosverfahrenForKennung`))
+      catchError(this.handleErrorIgnoreNotFound<any>(`getLosverfahrenForKennung`))
     );
   }
 
   updateSchuelerAuswahl(schuelerAuswahl: SchuelerAuswahl): Observable<any> {
-    const schuelerAuswahl_service_url = 'http://localhost:8080/schuelerauswahl';
+    const schuelerAuswahl_service_url = environment.api_base_url + '/api/schuelerauswahl';
     this.log(`Sende POST an ${schuelerAuswahl_service_url} für Kennung: ${schuelerAuswahl.schueler.kennung}`);
     this.log(JSON.stringify(schuelerAuswahl));
     return this.http.post<SchuelerAuswahl>(schuelerAuswahl_service_url, schuelerAuswahl, httpOptions).pipe(

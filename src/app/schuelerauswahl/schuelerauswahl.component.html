@@ -2,33 +2,41 @@
 <hr/>
 <label>Identifikationsnummer: <input #kennung size="10" (keyup)="suche(kennung.value)"/></label>
 <hr/>
-<table *ngIf="losverfahren">
-  <thead>
-  <tr>
-    <th>1. Wunsch</th>
-    <th>2. Wunsch</th>
-    <th>3. Wunsch</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr>
-    <td>
-      <select #wunsch1 [(ngModel)]="auswahl1">
-        <option *ngFor="let kurs of losverfahren.kurse">{{kurs.name}}</option>
-      </select>
-    </td>
-    <td>
-      <select #wunsch2 [(ngModel)]="auswahl2">
-        <option *ngFor="let kurs of losverfahren.kurse">{{kurs.name}}</option>
-      </select>
-    </td>
-    <td>
-      <select #wunsch3 [(ngModel)]="auswahl3">
-        <option *ngFor="let kurs of losverfahren.kurse">{{kurs.name}}</option>
-      </select>
-    </td>
-  </tr>
-  </tbody>
-</table>
-<label><button (click)="absenden(); kennung.value=''">Einstellungen speichern</button></label>
-
+<div *ngIf="losverfahren">
+  <div *ngIf="losverfahren.aktiv === true">
+    <table>
+      <thead>
+      <tr>
+        <th>1. Wunsch</th>
+        <th>2. Wunsch</th>
+        <th>3. Wunsch</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>
+          <select #wunsch1 [(ngModel)]="auswahl1">
+            <option *ngFor="let kurs of losverfahren.kurse">{{kurs.name}}</option>
+          </select>
+        </td>
+        <td>
+          <select #wunsch2 [(ngModel)]="auswahl2">
+            <option *ngFor="let kurs of losverfahren.kurse">{{kurs.name}}</option>
+          </select>
+        </td>
+        <td>
+          <select #wunsch3 [(ngModel)]="auswahl3">
+            <option *ngFor="let kurs of losverfahren.kurse">{{kurs.name}}</option>
+          </select>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+    <label>
+      <button (click)="absenden(); kennung.value=''">Einstellungen speichern</button>
+    </label>
+  </div>
+  <div *ngIf="losverfahren.aktiv === false">
+    <p>Dieses Losverfahren ist nicht aktiv. Du kannst hier leider keine Auswahl vornehmen.</p>
+  </div>
+</div>
