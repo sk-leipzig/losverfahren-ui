@@ -5,34 +5,24 @@
 <hr/>
 <div *ngIf="losverfahren">
   <div *ngIf="losverfahren.aktiv === true">
-    <table>
-      <thead>
-      <tr>
-        <th>1. Wunsch</th>
-        <th>2. Wunsch</th>
-        <th>3. Wunsch</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <td>
-          <select #wunsch1 [(ngModel)]="auswahl1">
-            <option *ngFor="let kurs of losverfahren.kurse">{{kurs.name}}</option>
-          </select>
-        </td>
-        <td>
-          <select #wunsch2 [(ngModel)]="auswahl2">
-            <option *ngFor="let kurs of losverfahren.kurse">{{kurs.name}}</option>
-          </select>
-        </td>
-        <td>
-          <select #wunsch3 [(ngModel)]="auswahl3">
-            <option *ngFor="let kurs of losverfahren.kurse">{{kurs.name}}</option>
-          </select>
-        </td>
-      </tr>
-      </tbody>
-    </table>
+    <div>
+    <label for="auswahl1">1. Wunsch</label><br>
+    <select #wunsch1 [(ngModel)]="auswahl1" id="auswahl1">
+      <option *ngFor="let kurs of losverfahren.kurse">{{kurs.name}}</option>
+    </select>
+    </div>
+    <div>
+    <label for="auswahl2">2. Wunsch</label><br>
+    <select #wunsch2 [(ngModel)]="auswahl2" id="auswahl2">
+      <option *ngFor="let kurs of losverfahren.kurse">{{kurs.name}}</option>
+    </select>
+    </div>
+    <div>
+    <label for="auswahl3">3. Wunsch</label><br>
+    <select #wunsch3 [(ngModel)]="auswahl3" id="auswahl3">
+      <option *ngFor="let kurs of losverfahren.kurse">{{kurs.name}}</option>
+    </select>
+    </div>
     <br>
     <button id="absenden" (click)="absenden(); kennung.value=''">Einstellungen speichern</button>
   </div>

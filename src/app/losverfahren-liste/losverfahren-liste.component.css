@@ -13,6 +13,7 @@
   padding: .3em 0;
   height: 1.6em;
   border-radius: 4px;
+  width: 284px;
 }
 
 .losverfahren li:hover {
@@ -26,7 +27,7 @@
   text-decoration: none;
   position: relative;
   display: block;
-  width: 250px;
+  width: 284px;
 }
 
 .losverfahren a:hover {
@@ -66,7 +67,7 @@ button:hover {
 
 button.delete {
   position: relative;
-  left: 194px;
+  left: 254px;
   top: -32px;
   background-color: gray !important;
   color: white;
