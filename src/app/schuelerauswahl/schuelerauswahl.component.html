@@ -1,6 +1,7 @@
 <h3>Losverfahren: <span>{{losverfahren?.name}}</span></h3>
 <hr/>
-<label>Identifikationsnummer: <input #kennung size="10" (keyup)="suche(kennung.value)"/></label>
+<label for="kennung">Identifikationsnummer:</label>
+<input id="kennung" #kennung maxlength="8" size="8" (keyup)="kennung.value = suche(kennung.value)"/>
 <hr/>
 <div *ngIf="losverfahren">
   <div *ngIf="losverfahren.aktiv === true">
@@ -32,9 +33,8 @@
       </tr>
       </tbody>
     </table>
-    <label>
-      <button (click)="absenden(); kennung.value=''">Einstellungen speichern</button>
-    </label>
+    <br>
+    <button id="absenden" (click)="absenden(); kennung.value=''">Einstellungen speichern</button>
   </div>
   <div *ngIf="losverfahren.aktiv === false">
     <p>Dieses Losverfahren ist nicht aktiv. Du kannst hier leider keine Auswahl vornehmen.</p>

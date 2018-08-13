@@ -11,6 +11,7 @@ import {AppRoutingModule} from './/app-routing.module';
 import {KurslisteComponent} from './kursliste/kursliste.component';
 import {TeilnehmernummerComponent} from './teilnehmernummer/teilnehmernummer.component';
 import {SchuelerauswahlComponent} from './schuelerauswahl/schuelerauswahl.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import {SchuelerauswahlComponent} from './schuelerauswahl/schuelerauswahl.compon
     HttpClientModule,
     BrowserModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -16,6 +16,8 @@ const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
 };
 
+const schuelerlisten_service_uri = environment.api_base_url + '/api/schuelerlisten';
+
 export class SchuelerUndLosverfahren {
   schueler: Schueler;
   losverfahren: Losverfahren;
@@ -29,6 +31,15 @@ export class SchuelerauswahlService {
   constructor(private http: HttpClient,
               private messageService: MessageService,
               private losverfahrenService: LosverfahrenService) {
+  }
+
+  deleteSchuelerAuswahl(losverfahrenId: number): Observable<any> {
+    const delete_uri = schuelerlisten_service_uri + '?losverfahrenId=' + losverfahrenId;
+    this.log(`Sende DELETE an ${delete_uri}`);
+    return this.http.delete<string>(delete_uri).pipe(
+      tap(_ => this.log(`Alle Schülerauswahl zu Losverfahren mit id=${losverfahrenId} gelöscht.`)),
+      catchError(this.handleError<any>('deleteSchuelerAuswahl'))
+    );
   }
 
   getLosverfahrenForKennung(kennung: string): Observable<SchuelerUndLosverfahren> {

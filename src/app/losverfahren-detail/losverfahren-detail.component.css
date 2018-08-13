@@ -1,8 +1,5 @@
-div.block {
-  display: block;
-  margin: 2em;
-  padding: 2em;
-  border: 1px dotted;
+input[type=file] {
+  margin-left: 10px;
 }
 
 input[type=checkbox].css-checkbox {

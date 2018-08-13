@@ -1,21 +1,16 @@
-<div>
-	<h2>Losverfahren:</h2>
-</div>
-<div>
-	<ul class="losverfahren">
-		<li *ngFor="let losverfahren of losverfahrenListe">
-			<a routerLink="/losverfahren/{{losverfahren.id}}">
-      			<span class="badge">&gt;</span> {{losverfahren.name}}
-    		</a>
-			<button class="delete" title="Losverfahren löschen"
-				(click)="deleteLosverfahren(losverfahren.id)">x</button>
-		</li>
-	</ul>
-</div>
-<div>
-	<h3>Losverfahren anlegen</h3>
-	<label>Name:  <input #name
-		placeholder="Namen für neues Losverfahren eingeben" />
-		<button (click)="createLosverfahren(name.value); name.value='';">anlegen</button>
-	</label>
+<h2>Losverfahren</h2>
+<div class="block">
+  <ul class="losverfahren">
+    <li *ngFor="let losverfahren of losverfahrenListe">
+      <a routerLink="/losverfahren/{{losverfahren.id}}">
+        <span class="badge">&gt;</span> {{losverfahren.name}}
+      </a>
+      <button class="delete" title="Losverfahren löschen" (click)="deleteLosverfahren(losverfahren.id)">x
+      </button>
+    </li>
+  </ul>
+  <h3>Losverfahren anlegen</h3>
+  <label for="name">Name:</label>
+  <input id="name" #name placeholder="Namen für neues Losverfahren eingeben" size="40" class="spr"/>
+  <button (click)="createLosverfahren(name.value); name.value='';">anlegen</button>
 </div>

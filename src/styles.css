@@ -1,1 +1,30 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, code, del, dfn, em, img, q, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
+  font-family: Verdana;
+  vertical-align: baseline;
+}
+
+#header {
+  margin: 0 auto;
+  width: 1000px;
+  padding-top: 0;
+  background: #700f11;
+  border-bottom: 1px solid #fff;
+}
+
+div.block {
+  display: block;
+  margin: 2em;
+  padding: 2em;
+  border: 1px dotted;
+}
+
+.spr {
+  margin-right: 5px;
+  display: inline-block;
+}
+
+button {
+  padding-right: 5px;
+}

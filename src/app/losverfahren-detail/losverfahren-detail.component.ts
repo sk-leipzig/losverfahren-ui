@@ -11,6 +11,7 @@ import {MessageService} from '../message.service';
 })
 export class LosverfahrenDetailComponent implements OnInit {
 
+  private losverfahrenId: string;
   losverfahren: Losverfahren;
 
   constructor(
@@ -21,7 +22,24 @@ export class LosverfahrenDetailComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.losverfahrenId = this.route.snapshot.paramMap.get('id');
     this.getLosverfahren();
+  }
+
+  private getLosverfahren(): void {
+    this.losverfahrenService.getLosverfahren(this.losverfahrenId)
+      .subscribe(losverfahren => this.losverfahren = losverfahren);
+  }
+
+  updateLosverfahren(): void {
+    this.log(`Setze Losverfahren ${this.losverfahren.name} auf aktiv=${this.losverfahren.aktiv}`);
+    this.losverfahrenService.getLosverfahren(this.losverfahrenId)
+      .subscribe(losverfahren => {
+          losverfahren.aktiv = this.losverfahren.aktiv;
+          this.losverfahrenService.updateLosverfahren(losverfahren).subscribe();
+          this.losverfahren = losverfahren;
+        }
+      );
   }
 
   upload(files: File[]): void {
@@ -33,21 +51,11 @@ export class LosverfahrenDetailComponent implements OnInit {
 
     this.log('uploading ' + files[0].name);
     formData.append('schuelerliste', files[0]);
-    formData.append('losverfahrenId', '' + this.losverfahren.id);
+    formData.append('losverfahrenId', '' + this.losverfahrenId);
 
     this.losverfahrenService.uploadAndGetResult(formData).subscribe(
       res => this.log('finished')
     );
-  }
-
-  updateLosverfahren(): void {
-    this.losverfahrenService.updateLosverfahren(this.losverfahren).subscribe();
-  }
-
-  getLosverfahren(): void {
-    const id = this.route.snapshot.paramMap.get('id');
-    this.losverfahrenService.getLosverfahren(id)
-      .subscribe(losverfahren => this.losverfahren = losverfahren);
   }
 
   private log(message: string) {

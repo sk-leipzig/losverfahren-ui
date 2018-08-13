@@ -16,10 +16,10 @@ import {SchuelerAuswahl} from '../schuelerAuswahl';
   styleUrls: ['./schuelerauswahl.component.css']
 })
 export class SchuelerauswahlComponent implements OnInit {
-  losverfahren: Losverfahren;
   @Input() auswahl1: string;
   @Input() auswahl2: string;
   @Input() auswahl3: string;
+  losverfahren: Losverfahren;
   private schuelerUndLosverfahren$: Observable<SchuelerUndLosverfahren>;
   private schuelerAuswahl: SchuelerAuswahl;
 
@@ -39,11 +39,16 @@ export class SchuelerauswahlComponent implements OnInit {
       distinctUntilChanged(),
 
       // switch to new search observable each time the term changes
-      switchMap((kennung: string) => this.schuelerauswahlService.getLosverfahrenForKennung(kennung)),
+      switchMap((kennung: string) => {
+          this.losverfahren = null;
+          return this.schuelerauswahlService.getLosverfahrenForKennung(kennung);
+        }
+      ),
     );
+
     this.schuelerUndLosverfahren$.subscribe(schuelerUndLosverfahren => {
       this.losverfahren = schuelerUndLosverfahren.losverfahren;
-      this.schuelerAuswahl = new SchuelerAuswahl(schuelerUndLosverfahren.schueler);
+      this.schuelerAuswahl = new SchuelerAuswahl(this.losverfahren.id, schuelerUndLosverfahren.schueler);
     });
   }
 
@@ -61,8 +66,10 @@ export class SchuelerauswahlComponent implements OnInit {
     );
   }
 
-  suche(kennung: string) {
+  suche(kennung: string): string {
+    kennung = kennung.replace(/[^0-9]/, '');
     this.searchTerms.next(kennung);
+    return kennung;
   }
 
   private log(message: string) {

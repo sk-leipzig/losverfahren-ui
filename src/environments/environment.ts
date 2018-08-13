@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
 //  api_base_url: 'http://losverfahren-manager.cfapps.io'
-  api_base_url: 'http://localhost:8080'
+  api_base_url: 'http://localhost:8080',
+  show_messages: true
 };
 
 /*

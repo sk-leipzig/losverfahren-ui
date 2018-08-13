@@ -1,32 +1,40 @@
-<div>
-  <h3 *ngIf="losverfahren"> {{losverfahren.name | uppercase}} bearbeiten</h3>
-  <div class="block">
-    <table>
-      <tr>
-        <td>
-          <input id="aktiv" class="css-checkbox" type="checkbox" (change)="updateLosverfahren()"
-                 [(ngModel)]="losverfahren.aktiv"/>
-          <label class="css-label" for="aktiv">Losverfahren</label>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <label for="auswerten">Auswertung starten</label>
-          <input id="auswerten" [disabled]="losverfahren.aktiv" #file type="file" name="schuelerliste" (change)="upload(file.files)"/>
-        </td>
-      </tr>
-    </table>
-  </div>
-
-
-  <div>
-    <app-teilnehmernummer></app-teilnehmernummer>
-  </div>
+<div *ngIf="losverfahren">
+  <h3> {{losverfahren.name | uppercase}} Bearbeitungsmodus</h3>
   <div>
     <app-kursliste></app-kursliste>
   </div>
-  <nav>
-    <a routerLink="/losverfahren">zurück zu den Losverfahren</a>
-  </nav>
+  <hr/>
+  <div>
+    <app-teilnehmernummer></app-teilnehmernummer>
+  </div>
+  <hr/>
+  <h3>Losverfahren aktivieren</h3>
+  <div class="block">
+    <p *ngIf="losverfahren.aktiv">
+      Schülereinschreibung ist möglich. Klicken Sie auf den grünen Button, um das Losverfahren zu deaktivieren.
+    </p>
+    <p *ngIf="!losverfahren.aktiv">
+      Schülereinschreibung ist nicht möglich. Klicken Sie auf den roten Button, um das Losverfahren zu aktivieren.
+    </p>
+    <input id="aktiv" class="css-checkbox" type="checkbox" (change)="updateLosverfahren()"
+           [(ngModel)]="losverfahren.aktiv"/>
+    <label class="css-label" for="aktiv">Losverfahren</label>
+  </div>
+  <hr/>
+  <h3>Losverfahren auswerten</h3>
+  <div class="block">
+    <p>
+      Laden Sie zum Start der Auswertung des Losverfahrens bitte die Excel-Datei, die die Liste der der Schüler mit der
+      achtstelligen Kennung enthält, hoch. Sie erhalten direkt im Anschluss per Download die Auswertung als
+      Excel-Datei.</p>
+    <input [disabled]="losverfahren.aktiv" id="auswerten" #file type="file" name="schuelerliste"
+           accept="*.xlsx" (change)="upload(file.files); file.value=null;"/>
+  </div>
 </div>
+<div *ngIf="!losverfahren" class="block">
+  Es wurde kein Losverfahren mit id {{losverfahrenId}} gefunden.
+</div>
+<nav>
+  <a routerLink="/losverfahren">zurück zu den Losverfahren</a>
+</nav>
 

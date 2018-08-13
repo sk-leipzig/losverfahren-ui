@@ -3,36 +3,24 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xml:lang="de" lang="de" xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<title>Home &#124; Goethe-Gymnasium Leipzig</title>
+  <title>Home &#124; Goethe-Gymnasium Leipzig</title>
   <base href="/">
 </head>
 <body>
-	<div>
-		<a href="http://cms.sachsen.schule/gymlgorki/" target="_top">
-			<img src="https://cms.sachsen.schule/fileadmin/_processed_/csm_logobannergoethe_b67dc57963.png"
-			width="500" height="87" alt="" border="0" />
-		</a>
-		<h1>Losverfahren-Manager</h1>
-	</div>
-	<div>
-		<router-outlet></router-outlet>
-	</div>
-	<div>
-		<app-messages></app-messages>
-	</div>
+<div class="header">
+  <div>
+    <a href="http://cms.sachsen.schule/gymlgorki/" target="_top">
+      <img src="https://cms.sachsen.schule/fileadmin/_processed_/csm_logobannergoethe_b67dc57963.png"
+           width="500" height="87" alt="" border="0"/>
+    </a>
+    <h1>Losverfahren-Manager</h1>
+  </div>
+  <div>
+    <router-outlet></router-outlet>
+  </div>
+  <div>
+    <app-messages></app-messages>
+  </div>
+</div>
 </body>
 </html>
-
-<script src="https://www.gstatic.com/firebasejs/5.3.1/firebase.js"></script>
-<script>
-  // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyDdbhbbcpG-ZhQuYCrn5mc4G-sx7qoE9XA",
-    authDomain: "losverfahren-manager-1.firebaseapp.com",
-    databaseURL: "https://losverfahren-manager-1.firebaseio.com",
-    projectId: "losverfahren-manager-1",
-    storageBucket: "losverfahren-manager-1.appspot.com",
-    messagingSenderId: "1089343490144"
-  };
-  firebase.initializeApp(config);
-</script>

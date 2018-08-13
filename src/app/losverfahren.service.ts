@@ -5,6 +5,8 @@ import {catchError, map, tap} from 'rxjs/operators';
 import {MessageService} from './message.service';
 import {LosverfahrenListe, Losverfahren} from './losverfahren';
 import {environment} from '../environments/environment';
+import {SchuelerlistenService} from './schuelerlisten.service';
+import {SchuelerauswahlService} from './schuelerauswahl.service';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -16,13 +18,13 @@ const losverfahren_service_uri = environment.api_base_url + '/api/losverfahren';
 })
 export class LosverfahrenService {
 
-
-  constructor(private http: HttpClient, private messageService: MessageService) {
+  constructor(private http: HttpClient,
+              private messageService: MessageService) {
   }
 
   getAllLosverfahren(): Observable<Losverfahren[]> {
     this.log(`Sende GET an ${losverfahren_service_uri}`);
-    return this.http.get<LosverfahrenListe>(losverfahren_service_uri).pipe(
+    return this.http.get<LosverfahrenListe>(losverfahren_service_uri, httpOptions).pipe(
       map(liste => liste._embedded.losverfahren),
       tap(losverfahren => this.log('Liste der Losverfahren erhalten')),
       catchError(this.handleError('getAllLosverfahren', []))
@@ -31,7 +33,7 @@ export class LosverfahrenService {
 
   getLosverfahren(id: string): Observable<Losverfahren> {
     this.log(`Sende GET an ${losverfahren_service_uri}/${id}`);
-    return this.http.get<Losverfahren>(losverfahren_service_uri + '/' + id).pipe(
+    return this.http.get<Losverfahren>(losverfahren_service_uri + '/' + id, httpOptions).pipe(
       tap(losverfahren => this.log('Losverfahren erhalten: ' + losverfahren.name)),
       catchError(this.handleError<any>('getLosverfahren'))
     );
@@ -55,7 +57,7 @@ export class LosverfahrenService {
 
   deleteLosverfahren(id: number): Observable<any> {
     this.log(`Sende DELETE an ${losverfahren_service_uri}/${id}`);
-    return this.http.delete<string>(losverfahren_service_uri + '/' + id).pipe(
+    return this.http.delete<string>(losverfahren_service_uri + '/' + id, httpOptions).pipe(
       tap(_ => this.log(`Losverfahren mit id ${id} gelöscht.`)),
       catchError(this.handleError<any>('deleteLosverfahren'))
     );
